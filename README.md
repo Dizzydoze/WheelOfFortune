@@ -1,6 +1,8 @@
 # WheelOfFortune
 
-[Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f5280009-9d15-4886-819d-42a6ba324961/fb5fe73c-ccdd-4a01-87d5-4151b205a29a/Untitled.avif)
+<p align="center">
+    <img src="https://github.com/Dizzydoze/WheelOfFortune/assets/106438058/cda87041-6d7d-44f4-ba26-575f767ee865">
+</p>
 
 - **Description**: A game of guessing a hidden phrase. Players get multiple chances to guess only one character at a time for reviewing the whole hidden phrase. Players win by successfully guess the entire hidden phrase. Players lose by guessing wrong characters and losing all their chances.
 - **Development process**:
