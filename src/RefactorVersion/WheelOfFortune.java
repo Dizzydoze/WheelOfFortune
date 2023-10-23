@@ -1,8 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Abstract class WheelOfFortune, extends Game.
@@ -13,6 +12,11 @@ import java.util.Random;
  */
 public abstract class WheelOfFortune extends Game {
 
+    List<String> phraseList;
+    String phrase;
+    StringBuilder hiddenPhrase;
+    Set<String> previousGuesses = new HashSet<>();
+
     /**
      * It should also define an abstract method getGuess(String previousGuesses),
      * which returns a char, thus requiring all concrete WheelOfFortune games to implement it.
@@ -20,21 +24,22 @@ public abstract class WheelOfFortune extends Game {
     public abstract char getGuess(String previousGuesses);
 
     // TODO: readPhrases, read all the phrases in our file and return list maybe.
+    public void readPhrases(){
+        try{
+            this.phraseList = Files.readAllLines(Paths.get("./../phrases.txt"));
+        } catch (IOException e){
+            System.out.println(e);
+        }
+    }
 
 
     /**
      * randomPhrase -- returns a single phrase randomly chosen from a list
      */
     public void randomPhrase() {
-        List<String> phraseList = null;
-        try{
-            phraseList = Files.readAllLines(Paths.get("./../phrases.txt"));
-        } catch (IOException e){
-            System.out.println(e);
-        }
         Random rand = new Random();
-        int r = rand.nextInt(3);
-        this.phrase =  phraseList.get(r);
+        int r = rand.nextInt(this.phraseList.size());
+        this.phrase =  this.phraseList.get(r);
     }
 
     /**

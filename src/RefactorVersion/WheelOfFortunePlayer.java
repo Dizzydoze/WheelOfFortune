@@ -1,7 +1,5 @@
 /**
  * WheelOfFortunePlayer Interface
- * This interface should define the following methods needed by all WheelOfFortunePlayers:
- *
  * Define At least 3 Concrete implementations of WheelOfFortunePlayer
  * Code three implementations of the WheelOfFortunePlayer interface.
  */
