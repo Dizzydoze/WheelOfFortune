@@ -6,6 +6,10 @@ import java.util.ArrayList;
  * So if there are m players and n phrases, Game’s playAll() should play m*n games.
  */
 public class WheelOfFortuneAIGame extends WheelOfFortune{
+    // list of players inside this one, but only one for UserGame
+    // two different main app, one for AI, one for user, won't combine
+    // only one instance of this game ,add a series of player into the game, and call playall.
+    // reset data member of the player
 
     /**
      * WheelOfFortuneAIGame should have three constructors.
@@ -23,11 +27,6 @@ public class WheelOfFortuneAIGame extends WheelOfFortune{
      */
     public WheelOfFortuneAIGame(ArrayList<WheelOfFortunePlayer> wheelOfFortunePlayers){}
 
-
-    /**
-     * AllGamesRecord playAll()— a method that plays a set of games and records
-     * and returns an AllGamesRecord object for the set.
-     */
     @Override
     public AllGamesRecord playAll() {
         return null;

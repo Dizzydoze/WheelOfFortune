@@ -7,15 +7,14 @@ import java.util.*;
  * Abstract class WheelOfFortune, extends Game.
  * This class will have much of the code from your existing WheelOfFortune class,
  * including readPhrases, randomPhrase, getHiddenPhrase, and processGuess.
-
  * And of course WheelOfFortune needs to implement the abstract methods in its parent Game.
  */
 public abstract class WheelOfFortune extends Game {
 
     List<String> phraseList;
+    int index;  // index of current guessing phrase
     String phrase;
     StringBuilder hiddenPhrase;
-    Set<String> previousGuesses = new HashSet<>();
 
     /**
      * It should also define an abstract method getGuess(String previousGuesses),
@@ -23,23 +22,21 @@ public abstract class WheelOfFortune extends Game {
      */
     public abstract char getGuess(String previousGuesses);
 
-    // TODO: readPhrases, read all the phrases in our file and return list maybe.
     public void readPhrases(){
         try{
-            this.phraseList = Files.readAllLines(Paths.get("./../phrases.txt"));
+            this.phraseList = Files.readAllLines(Paths.get("/Users/single/workspaces/WheelOfFortune/phrases.txt"));
         } catch (IOException e){
             System.out.println(e);
         }
     }
-
 
     /**
      * randomPhrase -- returns a single phrase randomly chosen from a list
      */
     public void randomPhrase() {
         Random rand = new Random();
-        int r = rand.nextInt(this.phraseList.size());
-        this.phrase =  this.phraseList.get(r);
+        this.index = rand.nextInt(this.phraseList.size());
+        this.phrase =  this.phraseList.get(this.index);
     }
 
     /**
@@ -59,24 +56,22 @@ public abstract class WheelOfFortune extends Game {
         System.out.println("[HIDDEN PHRASE] " + this.hiddenPhrase);
     }
 
-
     /**
      * processGuess -- returns whether a letter matches, and modifies the partially hidden phrase if there is a match.
      */
-    public boolean processGuess(String guess){
-        if (this.phrase.indexOf(guess.charAt(0)) == -1 && this.phrase.indexOf(guess.toUpperCase().charAt(0)) == -1) {
+    public boolean processGuess(char guess){
+        if (this.phrase.indexOf(guess) == -1 && this.phrase.indexOf(Character.toUpperCase(guess)) == -1) {
             return false;
         }else{
             // modify the hidden phrase
             for (int i = 0; i < this.phrase.length(); i++) {
-                if (this.phrase.charAt(i) == guess.charAt(0)){
-                    this.hiddenPhrase.setCharAt(i, guess.charAt(0));
-                } else if (this.phrase.charAt(i) == guess.toUpperCase().charAt(0)) {
-                    this.hiddenPhrase.setCharAt(i, guess.toUpperCase().charAt(0));
+                if (this.phrase.charAt(i) == guess){
+                    this.hiddenPhrase.setCharAt(i, guess);
+                } else if (this.phrase.charAt(i) == Character.toUpperCase(guess)) {
+                    this.hiddenPhrase.setCharAt(i, Character.toUpperCase(guess));
                 }
             }
             return true;
         }
     }
-
 }

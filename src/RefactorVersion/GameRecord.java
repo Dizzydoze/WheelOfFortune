@@ -8,7 +8,13 @@ public class GameRecord implements Comparable<GameRecord> {
     String playerId;
 
     public GameRecord(){
-        this.score = 0;
+        this.score = 10;    // -1 for each miss
+        this.playerId = "AutoGenUserPlayer";
+    }
+
+    public GameRecord(String playerId){
+        this.score = 10;
+        this.playerId = playerId;
     }
 
     @Override

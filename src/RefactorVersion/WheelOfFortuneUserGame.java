@@ -9,10 +9,26 @@ import java.util.Scanner;
  */
 public class WheelOfFortuneUserGame extends WheelOfFortune{
 
-
     public WheelOfFortuneUserGame(){
-
+        super.readPhrases();                        // initiate and generate phraseList
     }
+
+    @Override
+    public AllGamesRecord playAll() {
+        AllGamesRecord allGamesRecord = new AllGamesRecord();
+        while(!this.phraseList.isEmpty()){          // check if there are still phrases to guess, ask for next game
+            if (!this.playNext()){                  // quit if user choose to stop
+                System.out.println("User quited the game.");
+                return allGamesRecord;
+            }
+            else{                                   // user choose to play the next game
+                GameRecord gameRecord = this.play();
+                allGamesRecord.add(gameRecord);     // add record to the record list
+            }
+        }
+        System.out.println("All Games have been completed.");
+        return allGamesRecord;                      // return all records if run out of phrases
+    };
 
     /**
      * This class should override the “getGuess” method of the abstract WheelOfFortune class
@@ -22,38 +38,26 @@ public class WheelOfFortuneUserGame extends WheelOfFortune{
     public char getGuess(String previousGuesses) {
         Scanner scanner = new Scanner(System.in);
 
-        // make sure the input is legal
+        // keep retry until input is valid
         try {
             String input = scanner.nextLine();
-
-            // check for validation
+            // check for validation, make sure the input is legal
             if (!Character.isLetter(input.charAt(0))) {
                 System.out.println("[TRY AGAIN] Only English Letter is Allowed!");
                 return ' ';
             } else if (input.length() != 1) {
                 System.out.println("[TRY AGAIN] Exact ONE Character for Each Guess!");
                 return ' ';
-            } else if (this.previousGuesses.contains(Character.toString(input.charAt(0)))) {
+            } else if (previousGuesses.contains(Character.toString(input.charAt(0)))) {
                 System.out.println("[TRY AGAIN] You've already guessed it before.");
                 return ' ';
             } else{
-                // only add to buffer if it is valid and never been added before
-                this.previousGuesses.add(input);
-                System.out.println("[GUESS BUFFER] " + this.previousGuesses);
-                return input.charAt(0);
+                return input.charAt(0);     // legal input, return and process
             }
         }catch (StringIndexOutOfBoundsException e){
-            return ' ';
+            System.out.println(e);
         }
-    }
-
-    /**
-     * AllGamesRecord playAll()— a method that plays a set of games and records
-     * and returns an AllGamesRecord object for the set.
-     */
-    @Override
-    public AllGamesRecord playAll() {
-        return null;
+        return ' ';
     }
 
     /**
@@ -62,7 +66,36 @@ public class WheelOfFortuneUserGame extends WheelOfFortune{
      */
     @Override
     public GameRecord play() {
-        return null;
+        GameRecord gameRecord = new GameRecord();
+        String previousGuesses = "";                            // store previous guess characters
+        super.randomPhrase();                                   // get a new random phrase from the phraseList
+        super.generateHiddenPhrase();                           // generate a hiddenPhrase base on the new phrase
+        while (true){
+            if (!(gameRecord.score > 0)){                          // lose the game if score turns to 0
+                System.out.println("You Lose![PlayerId]" + gameRecord.playerId + "[Final Score] " + gameRecord.score);
+                this.phraseList.remove(this.index);             // remove the finished game from phraseList
+                return gameRecord;
+            }
+            if (this.hiddenPhrase.indexOf("*") == -1){
+                System.out.println("You Win![PlayerId]" + gameRecord.playerId + "[Final Score] " + gameRecord.score);
+                this.phraseList.remove(this.index);             // remove the finished game from phraseList
+                return gameRecord;
+            }
+
+            char guess = this.getGuess(previousGuesses);        // get new guess character
+            if (!Character.isWhitespace(guess)){
+                previousGuesses += guess;                       // add it into buffer
+                System.out.println("[GUESS BUFFER] " + previousGuesses);
+                if (!super.processGuess(guess)){
+                    gameRecord.score -= 1;
+                    System.out.println("[BAD GUESS]Score -1 ! " + "[PlayerId]"
+                            + gameRecord.playerId + "[Current Score] " + gameRecord.score);
+                }
+                else{
+                    System.out.println("[GOOD GUESS][Current Hidden Phrase] " + this.hiddenPhrase);
+                }
+            }
+        }
     }
 
     /**
@@ -73,7 +106,17 @@ public class WheelOfFortuneUserGame extends WheelOfFortune{
      */
     @Override
     public boolean playNext() {
-        return false;
+        while (true){
+            System.out.println("Are you ready for the next game? <Y/N>");
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
+            if (Objects.equals(input, "Y") || Objects.equals(input, "y")){
+                return true;
+            }
+            else if (Objects.equals(input, "N") || Objects.equals(input, "n")) {
+                return false;
+            }
+        }
     }
 
     /**
@@ -84,6 +127,16 @@ public class WheelOfFortuneUserGame extends WheelOfFortune{
     public static void main(String[] args) {
         WheelOfFortuneUserGame wheelOfFortuneUserGame = new WheelOfFortuneUserGame();
         AllGamesRecord allGamesRecord = wheelOfFortuneUserGame.playAll();
-        System.out.println(allGamesRecord);
+        if (allGamesRecord.arr.isEmpty()){
+            System.out.println("No Games were played.");
+        }
+        else{
+            int rank = 1;
+            for (int score: allGamesRecord.highGameList("AutoGenUserPlayer", allGamesRecord.arr.size())){
+                System.out.println("[AutoGenUserPlayer]" + "TOP " + rank + ":" + score);
+                rank ++;
+            }
+            System.out.println("[AutoGenUserPlayer]Average Score: "+ allGamesRecord.average("AutoGenUserPlayer"));
+        }
     }
 }

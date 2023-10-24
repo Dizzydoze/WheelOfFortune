@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Abstract class Game will encapsulate the code for looping through a set of games and recording the results.
  */

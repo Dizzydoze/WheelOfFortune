@@ -31,7 +31,7 @@ public class AllGamesRecord {
     /**
      average(playerId) -- returns the average score for all games of a particular player
      */
-    public int average(String playerId){
+    public float average(String playerId){
         int totalScore = 0;
         int count = 0;
         for (GameRecord gameRecord : this.arr) {
@@ -40,7 +40,7 @@ public class AllGamesRecord {
                 count += 1;
             }
         }
-        return totalScore / count;
+        return Math.round((float) (totalScore * 100 / count) /100);
     }
 
     /**
@@ -60,7 +60,7 @@ public class AllGamesRecord {
      highGameList(playerId, n)-- returns a sorted list of the top n scores for the specified player.
      This method should use the Collections class to sort the game instances.
      */
-    public ArrayList<Integer> highGameList(String playerId,int n){
+    public ArrayList<Integer> highGameList(String playerId, int n){
         this.arr.sort(Collections.reverseOrder());
         ArrayList<Integer> sortedArr = new ArrayList<>();
         for (int i = 0; i < n; i++) {

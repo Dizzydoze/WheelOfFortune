@@ -7,15 +7,15 @@ public interface WheelOfFortunePlayer {
     /**
      * char nextGuess() — get the next guess from the player
      */
-    public char nextGuess();
+    char nextGuess();
 
     /**
      * String playerId() — an id for the player
      */
-    public String playerId();
+    String playerId();
 
     /**
      * void reset() — reset the player to start a new game
      */
-    public void reset();
+    void reset();
 }
