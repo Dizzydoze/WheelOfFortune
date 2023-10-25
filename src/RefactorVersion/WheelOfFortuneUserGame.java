@@ -85,7 +85,7 @@ public class WheelOfFortuneUserGame extends WheelOfFortune{
             char guess = this.getGuess(previousGuesses);        // get new guess character
             if (!Character.isWhitespace(guess)){
                 previousGuesses += guess;                       // add it into buffer
-                System.out.println("[GUESS BUFFER] " + previousGuesses);
+//                System.out.println("[GUESS BUFFER] " + previousGuesses);
                 if (!super.processGuess(guess)){
                     gameRecord.score -= 1;
                     System.out.println("[BAD GUESS]Score -1 ! " + "[PlayerId]"
