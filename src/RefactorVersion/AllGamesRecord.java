@@ -20,12 +20,12 @@ public class AllGamesRecord {
     /**
      average()-- returns the average score for all games added to the record
      */
-    public int average(){
+    public float average(){
         int totalScore = 0;
         for (GameRecord gameRecord : this.arr) {
             totalScore += gameRecord.score;
         }
-        return totalScore / this.arr.size();
+        return Math.round((float)(totalScore*100 / this.arr.size())/100);
     }
 
     /**

@@ -24,7 +24,7 @@ public abstract class WheelOfFortune extends Game {
 
     public void readPhrases(){
         try{
-            this.phraseList = Files.readAllLines(Paths.get("/Users/single/workspaces/WheelOfFortune/phrases.txt"));
+            this.phraseList = Files.readAllLines(Paths.get("/Users/single/workspaces/WheelOfFortune/src/phrases.txt"));
         } catch (IOException e){
             System.out.println(e);
         }
@@ -60,7 +60,8 @@ public abstract class WheelOfFortune extends Game {
      * processGuess -- returns whether a letter matches, and modifies the partially hidden phrase if there is a match.
      */
     public boolean processGuess(char guess){
-        if (this.phrase.indexOf(guess) == -1 && this.phrase.indexOf(Character.toUpperCase(guess)) == -1) {
+        if (this.phrase.indexOf(guess) == -1 && this.phrase.indexOf(Character.toUpperCase(guess)) == -1
+                && this.phrase.indexOf(Character.toLowerCase(guess)) == -1) {
             return false;
         }else{
             // modify the hidden phrase
@@ -69,6 +70,8 @@ public abstract class WheelOfFortune extends Game {
                     this.hiddenPhrase.setCharAt(i, guess);
                 } else if (this.phrase.charAt(i) == Character.toUpperCase(guess)) {
                     this.hiddenPhrase.setCharAt(i, Character.toUpperCase(guess));
+                } else if (this.phrase.charAt(i) == Character.toLowerCase(guess)){
+                    this.hiddenPhrase.setCharAt(i, Character.toLowerCase(guess));
                 }
             }
             return true;
