@@ -22,6 +22,9 @@ public abstract class WheelOfFortune extends Game {
      */
     public abstract char getGuess(String previousGuesses);
 
+    /**
+     * read phrases from a local file and save the content to our data member list
+     */
     public void readPhrases(){
         try{
             this.phraseList = Files.readAllLines(Paths.get("/Users/single/workspaces/WheelOfFortune/src/phrases.txt"));
@@ -31,7 +34,7 @@ public abstract class WheelOfFortune extends Game {
     }
 
     /**
-     * randomPhrase -- returns a single phrase randomly chosen from a list
+     * randomPhrase -- get a single phrase randomly chosen from a list and save it to phrase data member
      */
     public void randomPhrase() {
         Random rand = new Random();
@@ -58,6 +61,7 @@ public abstract class WheelOfFortune extends Game {
 
     /**
      * processGuess -- returns whether a letter matches, and modifies the partially hidden phrase if there is a match.
+     * @return boolean whether the guess is a good guess or a bad guess
      */
     public boolean processGuess(char guess){
         if (this.phrase.indexOf(guess) == -1 && this.phrase.indexOf(Character.toUpperCase(guess)) == -1

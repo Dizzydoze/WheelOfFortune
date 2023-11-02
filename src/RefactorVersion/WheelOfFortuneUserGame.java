@@ -9,10 +9,17 @@ import java.util.Scanner;
  */
 public class WheelOfFortuneUserGame extends WheelOfFortune{
 
+    /**
+     * Constructor simply just call readPhrase from super class to read the phrases from docs
+     */
     public WheelOfFortuneUserGame(){
         super.readPhrases();                        // initiate and generate phraseList
     }
 
+    /**
+     * Play all the game current player get
+     * @return AllGamesRecord contains a list of record storing GamesRecord related to each game and player
+     */
     @Override
     public AllGamesRecord playAll() {
         AllGamesRecord allGamesRecord = new AllGamesRecord();
@@ -31,8 +38,8 @@ public class WheelOfFortuneUserGame extends WheelOfFortune{
     };
 
     /**
-     * This class should override the “getGuess” method of the abstract WheelOfFortune class
-     * using Scanner to get the guess
+     * Overridden the “getGuess” method of the abstract WheelOfFortune class, using Scanner to get the guess
+     * @return char single guess we get from command line
      */
     @Override
     public char getGuess(String previousGuesses) {
@@ -61,8 +68,8 @@ public class WheelOfFortuneUserGame extends WheelOfFortune{
     }
 
     /**
-     * The class should implement the play() method from Game in order to make these things happen.
-     * GameRecord play()-- plays a game and returns a GameRecord
+     * GameRecord play()-- plays a game
+     * @return a GameRecord storing the score and player id for current player
      */
     @Override
     public GameRecord play() {
@@ -102,7 +109,7 @@ public class WheelOfFortuneUserGame extends WheelOfFortune{
      * The class should implement the playNext() method from Game in order to make these things happen.
      * boolean playNext() -- asks if the next game should be played
      * (this will be called even to check if the first game should be played).
-     * The function should return a boolean.
+     * @return return a boolean.
      */
     @Override
     public boolean playNext() {

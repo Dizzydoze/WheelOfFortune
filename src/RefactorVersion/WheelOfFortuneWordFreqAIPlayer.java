@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Concrete method for Word Frequency AI Player with its strategy
+ */
 public class WheelOfFortuneWordFreqAIPlayer implements WheelOfFortunePlayer{
 
     String playerId;
@@ -13,6 +16,10 @@ public class WheelOfFortuneWordFreqAIPlayer implements WheelOfFortunePlayer{
     List<String> charList;
     int index;
 
+    /**
+     * Constructor set default values to our playerId and index, read strategy files for initiation
+     * @throws IOException Error might exists if file location or format is incorrect
+     */
     public WheelOfFortuneWordFreqAIPlayer() throws IOException{
         this.playerId = "wordFreqAI";
         this.index = 0;
@@ -24,6 +31,11 @@ public class WheelOfFortuneWordFreqAIPlayer implements WheelOfFortunePlayer{
             System.out.println(e);
         }
     }
+
+    /**
+     * Get next guess for current AI player
+     * @return char a new guess character from the strategy
+     */
     @Override
     public char nextGuess() {
         // get new guess base on frequency of characters and words
@@ -33,11 +45,18 @@ public class WheelOfFortuneWordFreqAIPlayer implements WheelOfFortunePlayer{
         return guess;
     }
 
+    /**
+     * Get current player id
+     * @return String current player id
+     */
     @Override
     public String playerId() {
         return this.playerId;
     }
 
+    /**
+     * reset data member id to 0 for the next game
+     */
     @Override
     public void reset() {
         this.index = 0;

@@ -3,12 +3,19 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+/**
+ * Concrete class for AI Players which implements WOFPlayer and play with its own strategy
+ */
 public class WheelOfFortuneCharFreqAIPlayer implements WheelOfFortunePlayer{
 
     String playerId;
     List<String> charList;
     int index;
 
+    /**
+     * Constructor for AI Player
+     * @throws IOException Error might exists if file location or format is incorrect
+     */
     public WheelOfFortuneCharFreqAIPlayer() throws IOException {
         this.playerId = "charFreqAI";
         this.index = 0;
@@ -18,6 +25,11 @@ public class WheelOfFortuneCharFreqAIPlayer implements WheelOfFortunePlayer{
             System.out.println(e);
         }
     }
+
+    /**
+     * Player calls this function to get a new guess
+     * @return single guess AI get from its strategy
+     */
     @Override
     public char nextGuess() {
         // guess base on frequency of English characters
@@ -26,11 +38,18 @@ public class WheelOfFortuneCharFreqAIPlayer implements WheelOfFortunePlayer{
         return guess;
     }
 
+    /**
+     * Get the player of current player
+     * @return String the player id for current AI player
+     */
     @Override
     public String playerId() {
         return this.playerId;
     }
 
+    /**
+     * reset the data member index back to 0
+     */
     @Override
     public void reset() {
         this.index = 0;

@@ -24,7 +24,7 @@ public abstract class GuessingGame extends Game{
     StringBuilder roundResult = new StringBuilder();    // save results for each round
 
     /**
-     * read all the phrases in file and store them into phraseList for picking
+     * Read all the phrases in file and store them into phraseList for picking
      */
     public void readPhrases(){
         try{
@@ -105,6 +105,11 @@ public abstract class GuessingGame extends Game{
         }
     }
 
+    /**
+     * @param previousGuesses buffer for checking duplicate guess
+     * @param input the guess character we get
+     * @return boolean whether the new guess is duplicate or not
+     */
     private boolean checkBuffer(String previousGuesses, String input){
         if (previousGuesses.contains(input)){
             System.out.println("[TRY AGAIN] You've already guessed it before.");
@@ -158,6 +163,11 @@ public abstract class GuessingGame extends Game{
         return true;
     }
 
+    /**
+     * Abstract function which requires subclass games to implement their own process logics
+     * @param input the new guess character
+     * @return boolean whether the new guess is correct or not
+     */
     public abstract boolean processGuess(String input);
 
     /**

@@ -2,10 +2,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
 
+/**
+ * Concrete class for a list storing all game records
+ */
 public class AllGamesRecord {
 
     ArrayList<GameRecord> arr;
 
+    /**
+     * Constructor, create a new array list for record storage
+     */
     public AllGamesRecord(){
         this.arr = new ArrayList<>();
     }
@@ -18,7 +24,8 @@ public class AllGamesRecord {
     }
 
     /**
-     average()-- returns the average score for all games added to the record
+     * average()-- returns the average score for all games added to the record
+     * @return average score for all games in the record list
      */
     public float average(){
         int totalScore = 0;
@@ -29,7 +36,8 @@ public class AllGamesRecord {
     }
 
     /**
-     average(playerId) -- returns the average score for all games of a particular player
+     * average(playerId) -- returns the average score for all games of a particular player
+     * @return float average score for all scores recorded for specific playerid
      */
     public float average(String playerId){
         int totalScore = 0;
@@ -44,8 +52,9 @@ public class AllGamesRecord {
     }
 
     /**
-     highGameList(n)-- returns a sorted list of the top n scores including player and score.
-     This method should use the Collections class to sort the game instances.
+     * highGameList(n)-- returns a sorted list of the top n scores including player and score.
+     * This method should use the Collections class to sort the game instances.
+     * @return ArrayList<GameRecord> top n records in a list of game records
      */
     public ArrayList<GameRecord> highGameList(int n){
         this.arr.sort(Collections.reverseOrder());
@@ -57,8 +66,9 @@ public class AllGamesRecord {
     }
 
     /**
-     highGameList(playerId, n)-- returns a sorted list of the top n scores for the specified player.
-     This method should use the Collections class to sort the game instances.
+     * highGameList(playerId, n)-- returns a sorted list of the top n scores for the specified player.
+     * This method should use the Collections class to sort the game instances.
+     * @return ArrayList<GameRecord> top n records in a list of game records for specific player id
      */
     public ArrayList<Integer> highGameList(String playerId, int n){
         this.arr.sort(Collections.reverseOrder());

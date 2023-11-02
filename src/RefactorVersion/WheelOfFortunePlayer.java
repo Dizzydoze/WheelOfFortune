@@ -6,11 +6,13 @@
 public interface WheelOfFortunePlayer {
     /**
      * char nextGuess() — get the next guess from the player
+     * @return char single guess character from the player
      */
     char nextGuess();
 
     /**
      * String playerId() — an id for the player
+     * @return String the player id
      */
     String playerId();
 

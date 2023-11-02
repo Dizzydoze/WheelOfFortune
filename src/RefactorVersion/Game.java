@@ -6,17 +6,20 @@ import java.util.List;
 public abstract class Game {
 
     /**
-     * AllGamesRecord playAll()— a method that plays a set of games and records and returns an AllGamesRecord object for the set.
+     * AllGamesRecord playAll()— a method that plays a set of games and records
+     * @return an AllGamesRecord object for the set
      */
     public abstract AllGamesRecord playAll();
 
     /**
-     * GameRecord play()-- plays a game and returns a GameRecord
+     * GameRecord play()-- plays a game
+     * @return returns a GameRecord
      */
     public abstract GameRecord play();
 
     /**
-     * boolean playNext() -- asks if the next game should be played (this will be called even to check if the first game should be played). The function should return a boolean.
+     * boolean playNext() -- asks if the next game should be played (this will be called even to check if the first game should be played)
+     * @return a boolean: true: player the next game; false: stop playing
      */
     public abstract boolean playNext();
 

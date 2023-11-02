@@ -35,6 +35,10 @@ public class WheelOfFortuneAIGame extends WheelOfFortune{
         this.arr = wheelOfFortunePlayers;
     }
 
+    /**
+     * Play all the phrases in the list for current player(who called this func)
+     * @return AllGamesRecord which contains a list for storing all record instance related to each player
+     */
     @Override
     public AllGamesRecord playAll() {
         // double loop
@@ -58,7 +62,8 @@ public class WheelOfFortuneAIGame extends WheelOfFortune{
 
     /**
      * The class should implement the play() method from Game in order to make these things happen.
-     * GameRecord play()-- plays a game and returns a GameRecord
+     * GameRecord play()-- plays a game
+     * @return returns a GameRecord
      */
     @Override
     public GameRecord play() {
@@ -103,13 +108,18 @@ public class WheelOfFortuneAIGame extends WheelOfFortune{
      * The class should implement the playNext() method from Game in order to make these things happen.
      * boolean playNext() -- asks if the next game should be played
      * (this will be called even to check if the first game should be played).
-     * The function should return a boolean.
+     * @return return a boolean.
      */
     @Override
     public boolean playNext() {
         return true;           // AI will play all games, so it will always be true
     }
 
+    /**
+     * get a new guess from the player
+     * @param previousGuesses send in a current buffer storing the guessed characters and keep it updated
+     * @return char the guess character we get
+     */
     @Override
     public char getGuess(String previousGuesses) {
         char guess = this.currentPlayer.nextGuess();
@@ -160,6 +170,5 @@ public class WheelOfFortuneAIGame extends WheelOfFortune{
         float avgWordFreq = allGamesRecord.average("wordFreqAI");
         String avgEach = String.format("Average score of each player: \n[randomAI]%f\n[charFreqAI]%f\n[wordFreqAI]%f", avgRandom, avgCharFreq, avgWordFreq);
         System.out.println(avgEach);
-
     }
 }

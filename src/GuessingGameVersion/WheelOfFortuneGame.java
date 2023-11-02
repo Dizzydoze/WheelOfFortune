@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/**
+ * Concrete class for WOF Game with its own guess process logic
+ */
 public class WheelOfFortuneGame extends GuessingGame{
 
     public WheelOfFortuneGame() {
@@ -9,7 +12,7 @@ public class WheelOfFortuneGame extends GuessingGame{
     /**
      * Check whether a letter matches, and partially modifies the hiddenPhrase if there is a match.
      * @param input guess input from command line
-     * @return boolean
+     * @return boolean whether it's a good guess or bad guess
      */
     @Override
     public boolean processGuess(String input){

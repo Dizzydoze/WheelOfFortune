@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class MasterMindGame extends GuessingGame{
 
-
     public MasterMindGame() {
         super();
     }
