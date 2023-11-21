@@ -27,7 +27,7 @@ public abstract class WheelOfFortune extends Game {
      */
     public void readPhrases(){
         try{
-            this.phraseList = Files.readAllLines(Paths.get("/Users/single/workspaces/WheelOfFortune/src/phrases.txt"));
+            this.phraseList = Files.readAllLines(Paths.get("src/phrases.txt"));
         } catch (IOException e){
             System.out.println(e);
         }
